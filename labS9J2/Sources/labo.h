@@ -32,10 +32,18 @@ void queue_push(Queue* q, void* data);
 void* queue_pop(Queue* q);
 
 /*
-* Vous devez definir une noeud que vous appelerez Node. Node va avoir une propriete data lui permettant de recevoir de l'information de different type. 
+* Vous devez definir une noeud que vous appelerez Node. Node va avoir une propriete data lui permettant de recevoir de l'information de different type.
 * Node a aussi une propriete  uint8_t cost qui va contenir le cout pour atteindre ce noeud,  une propriete de type uint8_t nommer visited et
 * une propriete de type uint8_t nommer path_from. Cette derniere, sera utiliser pour rebrousser chemin.
 */
+
+typedef struct Node Node;
+struct Node {
+	void* data;
+	uint8_t cost;
+	uint8_t visited;
+	uint8_t path_from;
+};
 
 typedef struct AdjMatrix AdjMatrix;
 
@@ -74,4 +82,4 @@ void add_edge(AdjMatrix* graph, int fromNode, int toNode, uint8_t cost);
 /*
 * Implementer l'algorithme de dijkstra.
 */
-void dijkstra(AdjMatrix* graph,int startNodeIndex, int endNodeIndex, Stack* solvedPath);
+void dijkstra(AdjMatrix* graph, int startNodeIndex, int endNodeIndex, Stack* solvedPath);

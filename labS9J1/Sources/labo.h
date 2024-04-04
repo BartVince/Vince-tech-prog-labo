@@ -32,12 +32,19 @@ void queue_push(Queue* q, void* data);
 void* queue_pop(Queue* q);
 
 /*
-* Vous devez definir une noeud que vous appelerez Node. Node va avoir une propriete data lui permettant de recevoir de l'information de different type. 
+* Vous devez definir une noeud que vous appelerez Node. Node va avoir une propriete data lui permettant de recevoir de l'information de different type.
 * Node a aussi une propriete  Node* adj[UINT8_MAX] qui va contenir la liste d'adjacence, une propriete de type uint8_t nommer len, une propriete de type uint8_t nommer visited et
 * une propriete de type QNode qui sera nommer revPath. Cette derni�re, sera utilis� pour rebrousser chemin lorsque nous ferons l'algorithme bfs.
 */
 
-
+typedef struct Node Node;
+struct Node {
+	void* data;
+	Node* adj[UINT8_MAX];
+	uint8_t len;
+	uint8_t visited;
+	QNode revPath;
+};
 
 
 /*
