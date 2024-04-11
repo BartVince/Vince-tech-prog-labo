@@ -38,11 +38,21 @@ typedef struct {
 } Vector2;
 
 /*
-* Vous devez definir une noeud que vous appelerez Node. Node va avoir une propriete data lui permettant de recevoir de l'information de different type. 
+* Vous devez definir une noeud que vous appelerez Node. Node va avoir une propriete data lui permettant de recevoir de l'information de different type.
 * Pour calculer notre heuristique, Node devra avoir une propriete position de type Vector2.
 * Node a aussi une propriete uint8_t graph_group qui va contenir l'association entre noeud,  uint8_t cost qui va contenir le cout pour atteindre ce noeud,  une propriete de type uint8_t nommer visited et
 * une propriete de type uint8_t nommer path_from. Cette derniere, sera utiliser pour rebrousser chemin.
 */
+
+typedef struct Node Node;
+struct Node {
+	void* data;
+	Vector2 position;
+	uint8_t graph_group;
+	uint8_t cost;
+	uint8_t visited;
+	uint8_t path_from;
+};
 
 typedef struct AdjMatrix AdjMatrix;
 
@@ -58,7 +68,7 @@ struct AdjMatrix {
 
 
 /*
-* Creer une matrice d'adjacence. Mettre len a 0. Mettre max_size a max_nodes. 
+* Creer une matrice d'adjacence. Mettre len a 0. Mettre max_size a max_nodes.
 * Allouer de la memoire pour le max de noeud specifier i.e. pour graph->nodes.
 * Pour chaque noeud de graph->nodes mettre le cost, graph_group et path_from a UINT8_MAX et visited a 0.
 * Pour adjGraph, allouer une quantiter de int* relatif a la valeur de max_nodes.
@@ -86,4 +96,4 @@ void build_groups(AdjMatrix* graph);
 /*
 * Implementer l'algorithme A*. Lorsqu'il n'y a aucun chemin entre deux node, la Stack doit être vide.
 */
-void astar(AdjMatrix* graph,int startNodeIndex, int endNodeIndex, Stack* solvedPath);
+void astar(AdjMatrix* graph, int startNodeIndex, int endNodeIndex, Stack* solvedPath);
